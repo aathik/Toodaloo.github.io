@@ -462,9 +462,11 @@ p{
   /* box-shadow: inset 6.5em 0 0 0 rgb(#229c34); */
 }
 
-#table-container{
-  padding-left: 18%;
+.buttons-last{
+  margin-top: 10%;
+  margin-bottom: 10%;
 }
+
 
 @keyframes slideIn {
   0% {

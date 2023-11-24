@@ -789,6 +789,26 @@ function uploadFile() {
     document.getElementById('fileInput').click();
 }
 
+// function transformData(userObj) {
+//     var data = [];
+  
+//     // Iterate over each category (WaterQuality, AirQuality, Sewage)
+//     Object.keys(userObj.Bike).forEach(function(category) {
+//       var trace = {
+//         x: Object.keys(userObj), // Bike, Car, Train
+//         y: Object.values(userObj).map(function(vehicle) {
+//           return vehicle[category];
+//         }),
+//         name: category,
+//         type: 'bar'
+//       };
+  
+//       data.push(trace);
+//     });
+  
+//     return data;
+//   }
+
 
 function plot(totalScores){
     const keys = Object.keys(totalScores);
@@ -807,8 +827,8 @@ function plot(totalScores){
     var bestScenario = document.getElementById('bestScenario');
     bestScenario.innerHTML = `<h2>Recommended Scenario: ${recommendedScenario}</h2>`;
 
-    console.log("Result: ", scenarioDimScore);
-    console.log("Result: ", Object.keys(scenarioDimScore));
+    // console.log("Result: ", scenarioDimScore);
+    console.log("scenarioDimScore: ", Object.keys(scenarioDimScore));
     
     
 
@@ -850,7 +870,9 @@ function plot(totalScores){
 
     Plotly.newPlot(piechart, pieChartData, layout);
 
-    var xValues = Object.keys(scenarioDimScore.Bike); // Assuming all objects have the same keys
+    var xValues = Object.keys(scenarioDimScore[Object.keys(scenarioDimScore)[0]]);
+
+    // Initialize empty array to store traces
     var traces = [];
 
     // Create traces dynamically
@@ -868,17 +890,20 @@ function plot(totalScores){
     }
     }
 
-    console.log("Traces: ", traces)
+    console.log(traces);
 
-    // Create layout
+    // // Create layout
     var layout = { title: 'Dimensionless Score of each Category',barmode: 'group' };
 
     Plotly.newPlot(barchart, traces, layout, {modeBarButtonsToRemove: [ 'pan','zoom', 'autoscale', 'lasso', 'select', 'resetScale2d']});
 
 
-    var categories = Object.keys(scenarioDimScore.Bike);
+    // var categories = Object.keys(scenarioDimScore.Bike);
 
     var stackChart = document.getElementById('stack-chart');
+
+    var categories = Object.keys(Object.values(scenarioDimScore)[0]);
+
 
     // Initialize an array to store traces
     var traces = [];
@@ -898,11 +923,13 @@ function plot(totalScores){
 
     console.log("StackTraces: ", traces);
 
-    // Create layout
+    // // Create layout
     var layout = { title: 'Dimensionless Score of each Scenario',barmode: 'stack' };
 
-    // Plot the chart
+    // // Plot the chart
     Plotly.newPlot(stackChart, traces, layout, {modeBarButtonsToRemove: [ 'pan','zoom', 'autoscale', 'lasso', 'select', 'resetScale2d']});
+
+    
 
 }
 

@@ -274,6 +274,12 @@ body {
     right: 50%;
 }
 
+.buttons-last{
+    margin-top: 10%;
+    margin-bottom: 10%;
+}
+
+
 /* RESPONSIVE */
 
 @media only screen and (max-width: 425px) {
